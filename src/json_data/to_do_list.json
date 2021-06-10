@@ -1,0 +1,36 @@
+ [
+    {
+      "item_id": 1,
+      "title":"Grocery",
+      "completed":false,
+      "steps":["step1", "step2"]
+   },
+
+   {
+      "item_id": 2,
+      "title":"Beauty Products",
+      "completed":false,
+      "steps":[]
+   },
+
+   {
+      "item_id": 3,
+      "title":"Fruits",
+      "completed":true,
+      "steps":["step1", "step2"]
+   },
+
+   {
+      "item_id": 4,
+      "title":"Dairy Products",
+      "completed":false,
+      "steps":["step1", "step2"]
+   },
+
+   {
+      "item_id": 5,
+      "title":"Clothes",
+      "completed":true,
+      "steps":["step1", "step2"]
+   }
+]
