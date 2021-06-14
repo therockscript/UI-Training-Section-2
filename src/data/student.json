@@ -1,0 +1,26 @@
+[
+    {
+        "roll_number": 1,
+        "name": "Alice",
+        "dob": "1980-02-03",
+        "address": "Texas, US"
+    },
+    {
+        "roll_number": 2,
+        "name": "Bob",
+        "dob": "1981-04-08",
+        "address": "Shicago, US"
+    },
+    {
+        "roll_number": 3,
+        "name": "Carol",
+        "dob": "1979-11-23",
+        "address": "Silicon Valley, US"
+    },
+    {
+        "roll_number": 4,
+        "name": "Dave",
+        "dob": "1980-12-03",
+        "address": "Miami, US"
+    }
+]
