@@ -1,7 +1,7 @@
 import Student from "./Student";
 
 function StudentList(props) {
-    const { list } = props;
+    const { list, deleteStudent } = props;
 
     return <div>
         <table className="table table-striped">
@@ -17,7 +17,7 @@ function StudentList(props) {
             <tbody>
                 {list && list.map(
                         function(student) {
-                            return <Student student={student}></Student>
+                            return <Student student={student} deleteStudent={deleteStudent}></Student>
                         }
                     )
                 }

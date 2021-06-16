@@ -1,12 +1,17 @@
 function Student(props) {
-    const { student } = props;
+    const { student, deleteStudent } = props;
 
+    function onDelete() {
+        props.deleteStudent(student.rollNumber);
+    }
     return <tr>
-        <td>{student.roll_number}</td>
+        <td>{student.rollNumber}</td>
         <td>{student.name}</td>
         <td>{student.dob}</td>
         <td>{student.address}</td>
-        <td></td>
+        <td>
+            <button className="btn btn-danger" onClick={onDelete}>Delete</button>
+        </td>
     </tr>;
 }
 
