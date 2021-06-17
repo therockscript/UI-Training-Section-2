@@ -9,6 +9,7 @@ function HospitalManagement(props){
 
 	const [showAddHospitalForm,setShowAddHospitalForm]=useState(false);
 	const [showAddNewHospital, setShowAddNewHospital] =useState(true)
+    const [hospitalList, setHospitalList]=useState(hospitals);
 
 	function onAddNewHospital(e){
        setShowAddHospitalForm(true);
@@ -20,16 +21,37 @@ function HospitalManagement(props){
 		setShowAddNewHospital(true);
 	}
 
+  function addHospital(hospital){
+    const newHospital=[...hospitalList, hospital];
+    setHospitalList(newHospital);
+    setShowAddHospitalForm(false);
+    setShowAddNewHospital(true);
+  }
+     
+    function deleteHospital(hospital_id){
+       //debugger;
+
+        const deleteIndex=hospitalList.findIndex(
+               function (hospital){
+                console.log(hospital.hospital_id)
+                 return hospital.hospital_id == hospital_id;
+               }
+            );
+        console.log(hospitalList);
+
+        hospitalList.splice(deleteIndex,1);
+         setHospitalList([...hospitalList]);
+    }
     return <div>{showAddNewHospital &&
     <button className="btn btn-info mt-2 mb-3 mr-2 float-right" onClick={onAddNewHospital}>Add New Hospital</button>
      }
 
      {
      	showAddHospitalForm &&
-     	<AddHospitalForm hideHospitalForm={hideHospitalForm}></AddHospitalForm>
+     	<AddHospitalForm hideHospitalForm={hideHospitalForm} addHospital={addHospital}></AddHospitalForm>
      }
 
-    <HospitalList list={hospitals}></HospitalList>
+    <HospitalList list={hospitalList} deleteHospital={deleteHospital}></HospitalList>
     </div>
 }
 export default HospitalManagement;
