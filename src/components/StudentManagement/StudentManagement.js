@@ -7,15 +7,35 @@ function StudentManagement(props) {
   const [showAddStudentForm, setShowAddStudentForm] = useState(false);
   const [showAddNewStudent, setShowAddNeStudent] = useState(true);
   const [studentList, setStudentList] = useState(students);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [showList, setShowList] = useState(true);
 
   function onAddNewStudent(e) {
     setShowAddStudentForm(true);
     setShowAddNeStudent(false);
+    setSelectedStudent(null);
+    setShowList(false);
   }
 
   function hideStudentForm(e) {
     setShowAddStudentForm(false);
     setShowAddNeStudent(true);
+    setShowList(true);
+  }
+
+  function saveUpdatedStudent(student) {
+    const newStudentList = studentList;
+    const index = newStudentList.findIndex(
+      function (s) {
+        return s.rollNumber == student.rollNumber;
+      }
+    )
+    newStudentList[index] = student;
+    setStudentList(newStudentList);
+    setShowAddStudentForm(false);
+    setShowAddNeStudent(true);
+    setSelectedStudent(null);
+    setShowList(true);
   }
 
   function addStudent(student) {
@@ -23,10 +43,10 @@ function StudentManagement(props) {
     setStudentList(newStudentList);
     setShowAddStudentForm(false);
     setShowAddNeStudent(true);
+    setShowList(true);
   }
 
   function deleteStudent(rollNumber) {
-      debugger;
     // const index = studentList.findIndex(student => student.rollNumber === rollNumber);
     const index = studentList.findIndex(
         function (student) {
@@ -35,6 +55,13 @@ function StudentManagement(props) {
     );
     studentList.splice(index, 1);
     setStudentList([...studentList]);
+  }
+
+  function editStudent(student) {
+    setShowAddStudentForm(true);
+    setShowAddNeStudent(false);
+    setSelectedStudent(student);
+    setShowList(false);
   }
 
   return (
@@ -52,11 +79,17 @@ function StudentManagement(props) {
       {showAddStudentForm && (
         <AddStudentForm
           addStudent={addStudent}
+          saveUpdatedStudent={saveUpdatedStudent}
           hideStudentForm={hideStudentForm}
+          student={selectedStudent}
         ></AddStudentForm>
       )}
 
-      <StudentList list={studentList} deleteStudent={deleteStudent}></StudentList>
+      {showList && <StudentList list={studentList} 
+        deleteStudent={deleteStudent}
+        editStudent={editStudent}
+        ></StudentList>
+      }
     </div>
   );
 }

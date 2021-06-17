@@ -9,7 +9,13 @@ const initialFormValues = {
 };
 
 function AddStudentForm(props) {
-  const [formValue, setFormValue] = useState(initialFormValues);
+
+  const { student } = props;
+
+  const [isAdd, setIsAdd] = useState(student ? false : true);
+  const [formValue, setFormValue] = useState(student || initialFormValues);
+
+  console.log("isAdd ==> ", isAdd);
 
   function onFormUpdate(event) {
     const tempFormValue = {
@@ -21,17 +27,23 @@ function AddStudentForm(props) {
     })
   }
 
-  function onAddStudent() {
-    props.addStudent(formValue);
+  function onAddOrUpdateStudent() {
+    if (isAdd) {
+      props.addStudent(formValue);
+    } else {
+      props.saveUpdatedStudent(formValue);
+    }
   }
 
   return (
     <div className="m-5 border border-dark p-4">
+      <h4 className="text-center">{isAdd ? "Add form" : "Update form"}</h4>
       <FormGroup
         label="Roll Number"
         type="number"
         name="rollNumber"
         value={formValue.rollNumber}
+        disabled={isAdd ? false : true}
         onInputChange={onFormUpdate}
       />
       <FormGroup label="Name" 
@@ -57,9 +69,9 @@ function AddStudentForm(props) {
       <button 
         type="button" 
         className="btn btn-primary mr-2"
-        onClick={onAddStudent}
+        onClick={onAddOrUpdateStudent}
         >
-        Add Student
+        {isAdd ? "Add Student": "Update Student"}
       </button>
       <button
         type="button"
