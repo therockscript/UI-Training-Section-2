@@ -6,6 +6,18 @@ class StateDemo extends React.Component {
         counter: 10
     }
 
+    componentDidMount() {
+
+    }
+
+    componentDidUpdate() {
+
+    }
+
+    componentWillUnmount() {
+
+    }    
+
     incrementCounter() {
         this.setState({
             counter: this.state.counter + 1
