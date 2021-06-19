@@ -9,11 +9,13 @@ function HospitalManagement(props){
 
 	const [showAddHospitalForm,setShowAddHospitalForm]=useState(false);
 	const [showAddNewHospital, setShowAddNewHospital] =useState(true)
-    const [hospitalList, setHospitalList]=useState(hospitals);
+  const [hospitalList, setHospitalList]=useState(hospitals);
+  const[selectedHospital, setSelectedHospital]=useState(null)
 
 	function onAddNewHospital(e){
        setShowAddHospitalForm(true);
        setShowAddNewHospital(false);
+       setSelectedHospital(null)
 	}
 
 	function hideHospitalForm(){
@@ -29,7 +31,7 @@ function HospitalManagement(props){
   }
      
     function deleteHospital(hospital_id){
-       //debugger;
+       debugger;
 
         const deleteIndex=hospitalList.findIndex(
                function (hospital){
@@ -42,16 +44,43 @@ function HospitalManagement(props){
         hospitalList.splice(deleteIndex,1);
          setHospitalList([...hospitalList]);
     }
+
+    function editHospital(hospital){
+     // debugger;
+        setShowAddHospitalForm(true);
+        setShowAddNewHospital(false);
+        setSelectedHospital(hospital);
+    }
+
+    function saveUpdatedHospital(hospital){
+      const newHospitalList = hospitalList;
+      const index = newHospitalList.findIndex(
+          function (h) {
+            return h.hospital_id == hospital.hospital_id;
+          }
+        )
+          newHospitalList[index]=hospital;
+          setHospitalList(newHospitalList);
+          setShowAddHospitalForm(false);
+          setShowAddNewHospital(true);
+          setSelectedHospital(null);
+
+    }
+
     return <div>{showAddNewHospital &&
     <button className="btn btn-info mt-2 mb-3 mr-2 float-right" onClick={onAddNewHospital}>Add New Hospital</button>
      }
 
-     {
-     	showAddHospitalForm &&
-     	<AddHospitalForm hideHospitalForm={hideHospitalForm} addHospital={addHospital}></AddHospitalForm>
+     {showAddHospitalForm &&
+     	<AddHospitalForm 
+       hideHospitalForm={hideHospitalForm}
+       addHospital={addHospital}
+      saveUpdatedHospital={saveUpdatedHospital}
+      hospital={selectedHospital}></AddHospitalForm>
      }
 
-    <HospitalList list={hospitalList} deleteHospital={deleteHospital}></HospitalList>
+    <HospitalList list={hospitalList} deleteHospital={deleteHospital}
+    editHospital={editHospital}></HospitalList>
     </div>
 }
 export default HospitalManagement;

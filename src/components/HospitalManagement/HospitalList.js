@@ -2,7 +2,7 @@ import hospitals from '../../json_data/hospital.json';
 import Hospital from "./hospital";
 
 function HospitalList(props){
-        const {list, deleteHospital} = props;
+        const {list, deleteHospital, editHospital} = props;
         return <div className="container p-4">
               <table className="table table-hover">
             <thead>
@@ -17,7 +17,8 @@ function HospitalList(props){
             <tbody>
                 {list && list.map(
                         function(hospital) {
-                            return <Hospital hospital={hospital} deleteHospital={deleteHospital}></Hospital>
+                            return <Hospital hospital={hospital} deleteHospital={deleteHospital}
+                            editHospital={editHospital}></Hospital>
                         }
                     )
                 }

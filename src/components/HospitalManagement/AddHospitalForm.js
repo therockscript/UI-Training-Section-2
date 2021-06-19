@@ -9,7 +9,13 @@ const initialFormValues={
 };
 
 function AddHospitalForm(props){
-	const[formValue, setFormValue]= useState(initialFormValues);
+
+  const {hospital}=props;
+
+  const[isAdd, setIsAdd]= useState(hospital ? false : true);
+
+	const[formValue, setFormValue]= useState(hospital || initialFormValues);
+  console.log("isAdd ==> ", isAdd);
 
 	function onFormUpdate(event){
 		console.log(event)
@@ -25,14 +31,24 @@ function AddHospitalForm(props){
 
 	}
 
-	function onAddHospital(){
+  function onAddOrUpdateHospital(){
+    if(isAdd){
+      props.addHospital(formValue);
+    } else{
+      props.saveUpdatedHospital(formValue);
+    }
+  }
+
+	{/*function onAddHospital(){
 		props.addHospital(formValue);
-	}
+	}*/}
 
 	return <div className="m-5 border solid 2px border-info p-3">
+  <h3 className="text-center">{isAdd ? "Add form" : "Update Form"}</h3>
               <FormGroup label="Hospital Id"
                type="number" name="hospital_id"
                value={formValue.hospital_id}
+               disabled={isAdd ? false : true}
                onInputChange={onFormUpdate}/>
 
               <FormGroup label="Hospital Name"
@@ -51,10 +67,11 @@ function AddHospitalForm(props){
                onInputChange={onFormUpdate}/>
 
               <button type="button" className="btn btn-primary mr-1"
-               onClick={onAddHospital}>Add Hospital</button>
+               onClick={onAddOrUpdateHospital}>{isAdd ? "Add Hospital" : "Update Hospital"}</button>
 
               <button type="button" className="btn btn-danger"
-               onClick={props.hideHospitalForm}>Cancel</button>
+               onClick={props.hideHospitalForm}
+               onInputChange={onFormUpdate}>Cancel</button>
 	       </div>
 }
 export default AddHospitalForm;
