@@ -1,9 +1,14 @@
 import './App.css';
 import React, { useState } from 'react';
-import ToDoList from './components/ToDoList';
-import StateDemo from './components/StateDemo';
-import GuessTheNumber from './components/game/GueesTheNumber';
+// import ToDoList from './components/ToDoList';
+// import StateDemo from './components/StateDemo';
+// import GuessTheNumber from './components/game/GueesTheNumber';
 import StudentManagement from './components/StudentManagement/StudentManagement';
+import StudentManagementRedux from './components/StudentManagementRedux/StudentManagementRedux';
+import StudentCount from './components/StudentManagementRedux/StudentCount';
+import store from './redux/store';
+import { Provider } from 'react-redux';
+
 
 function App() {
 
@@ -15,12 +20,17 @@ function App() {
 
   return (
     <div>
-
-      { show && <StudentManagement></StudentManagement> }
-      {/* <GuessTheNumber></GuessTheNumber> */}
-      {/* <h1>Todo List</h1> */}
-      {/* <ToDoList title="Yours to-do list"></ToDoList> */}
-      {/* <StateDemo></StateDemo> */}
+      <Provider store={store}>
+        <div>
+          {/* { show && <StudentManagement></StudentManagement> } */}
+          { show && <StudentManagementRedux></StudentManagementRedux>}
+          {/* <GuessTheNumber></GuessTheNumber> */}
+          {/* <h1>Todo List</h1> */}
+          {/* <ToDoList title="Yours to-do list"></ToDoList> */}
+          {/* <StateDemo></StateDemo> */}
+        </div>
+      </Provider>
+      { <StudentCount></StudentCount>}
     </div>
   );
 }
