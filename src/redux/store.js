@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import ticTacToeSlice from './TicTacToeSlice';
+import ticTacToeSlice from './ticTacToeSlice';
 
 export default configureStore({
     reducer: {
