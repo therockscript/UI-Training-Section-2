@@ -6,6 +6,9 @@ import React, { useState } from 'react';
 import StudentManagement from './components/StudentManagement/StudentManagement';
 import StudentManagementRedux from './components/StudentManagementRedux/StudentManagementRedux';
 import StudentCount from './components/StudentManagementRedux/StudentCount';
+
+import TicTacToe from './components/TicTacToe/TicTacToe';
+
 import store from './redux/store';
 import { Provider } from 'react-redux';
 
@@ -23,14 +26,15 @@ function App() {
       <Provider store={store}>
         <div>
           {/* { show && <StudentManagement></StudentManagement> } */}
-          { show && <StudentManagementRedux></StudentManagementRedux>}
+          {/* { show && <StudentManagementRedux></StudentManagementRedux>} */}
           {/* <GuessTheNumber></GuessTheNumber> */}
           {/* <h1>Todo List</h1> */}
           {/* <ToDoList title="Yours to-do list"></ToDoList> */}
           {/* <StateDemo></StateDemo> */}
+          <TicTacToe></TicTacToe>
         </div>
       </Provider>
-      { <StudentCount></StudentCount>}
+      {/* { <StudentCount></StudentCount>} */}
     </div>
   );
 }

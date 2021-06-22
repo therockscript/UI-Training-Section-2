@@ -1,0 +1,15 @@
+create slice file
+	createSlice - name, initialState, reducers
+	Import and include slice in store.
+
+Component creation using state.
+
+useSelector - to read and use value from global state
+
+useDispatch - set value in state from component
+dispatch({
+	type: "<slice name>/<function name>",
+	payload: {}
+})
+
+reducer - functions to set state

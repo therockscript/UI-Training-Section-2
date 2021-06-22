@@ -1,9 +1,11 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import studentSlice from './studentSlice';
+import ticTacToeSlice from './ticTacToeSlice';
 
 export default configureStore({
     reducer: {
-        student: studentSlice
+        student: studentSlice,
+        ticTacToe: ticTacToeSlice
     }
 })
