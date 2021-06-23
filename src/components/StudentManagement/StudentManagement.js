@@ -2,6 +2,7 @@ import students from "../../data/student.json";
 import StudentList from "./StudentList";
 import AddStudentForm from "./AddStudentForm";
 import { useState, useEffect } from "react";
+import { useParams, useHistory } from 'react-router-dom';
 
 function StudentManagement(props) {
   const [showAddStudentForm, setShowAddStudentForm] = useState(false);
@@ -10,10 +11,15 @@ function StudentManagement(props) {
   const [masterStudentList, setMasterStudentList] = useState(students);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showList, setShowList] = useState(true);
+  const params = useParams();
+  const history = useHistory();
 
   useEffect(function() {
     console.log("StudentManagement useEffect studentList");
     console.log("studentList.length", studentList.length)
+    setTimeout(() => {
+      history.push("/tic-tac-toe");
+    }, 5000)
   });
 
   function unMountComponent() {
@@ -125,7 +131,7 @@ function StudentManagement(props) {
 
   return (
     <div class="StudentManagement">
-
+      {JSON.stringify(params)}
       <input type="text" 
         class="form-control text-center mt-2" 
         style={{width: "400px", display: "inline-block"}} 
