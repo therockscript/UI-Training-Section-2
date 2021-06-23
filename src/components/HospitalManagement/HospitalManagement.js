@@ -10,17 +10,20 @@ function HospitalManagement(props){
 	const [showAddHospitalForm,setShowAddHospitalForm]=useState(false);
 	const [showAddNewHospital, setShowAddNewHospital] =useState(true)
   const [hospitalList, setHospitalList]=useState(hospitals);
-  const[selectedHospital, setSelectedHospital]=useState(null)
+  const[selectedHospital, setSelectedHospital]=useState(null);
+  const [showList, setShowList] = useState(true);
 
 	function onAddNewHospital(e){
        setShowAddHospitalForm(true);
        setShowAddNewHospital(false);
-       setSelectedHospital(null)
+       setSelectedHospital(null);
+        setShowList(false);
 	}
 
 	function hideHospitalForm(){
 		setShowAddHospitalForm(false);
 		setShowAddNewHospital(true);
+     setShowList(true);
 	}
 
   function addHospital(hospital){
@@ -28,6 +31,7 @@ function HospitalManagement(props){
     setHospitalList(newHospital);
     setShowAddHospitalForm(false);
     setShowAddNewHospital(true);
+    setShowList(true);
   }
      
     function deleteHospital(hospital_id){
@@ -50,6 +54,7 @@ function HospitalManagement(props){
         setShowAddHospitalForm(true);
         setShowAddNewHospital(false);
         setSelectedHospital(hospital);
+        setShowList(false);
     }
 
     function saveUpdatedHospital(hospital){
@@ -64,6 +69,7 @@ function HospitalManagement(props){
           setShowAddHospitalForm(false);
           setShowAddNewHospital(true);
           setSelectedHospital(null);
+            setShowList(true);
 
     }
 
@@ -78,9 +84,10 @@ function HospitalManagement(props){
       saveUpdatedHospital={saveUpdatedHospital}
       hospital={selectedHospital}></AddHospitalForm>
      }
-
+    {showList &&
     <HospitalList list={hospitalList} deleteHospital={deleteHospital}
     editHospital={editHospital}></HospitalList>
+    }
     </div>
 }
 export default HospitalManagement;
