@@ -8,6 +8,9 @@ import StudentManagement from './components/StudentManagement/StudentManagement'
 // import StudentCount from './components/StudentManagementRedux/StudentCount';
 
 import TicTacToe from './components/TicTacToe/TicTacToe';
+import Login from './components/Login/Login';
+import LoginSuccess from './components/Login/LoginSucess';
+
 
 import store from './redux/store';
 import { Provider } from 'react-redux';
@@ -33,6 +36,9 @@ function App() {
             <li>
               <Link to="/number-game">Number game</Link>
             </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
           </ul>
           <Switch>
             <Route exact path="/">
@@ -49,6 +55,12 @@ function App() {
             </Route>
             <Route path="/number-game">
               <GuessTheNumber />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/login-success">
+              <LoginSuccess />
             </Route>
           </Switch>
         </div>

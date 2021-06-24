@@ -3,7 +3,7 @@ function FormGroup(props) {
 
   return (
     <div className="form-group">
-      <label>{label}</label>
+      <label className="font-weight-bold">{label}</label>
       <input
         type={type}
         className="form-control"
@@ -11,6 +11,7 @@ function FormGroup(props) {
         value={value}
         disabled={disabled}
         onChange={onInputChange}
+        placeholder={label}
       />
     </div>
   );
