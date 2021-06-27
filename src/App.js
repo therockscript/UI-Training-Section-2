@@ -6,7 +6,8 @@ import TicTacToe from './components/TicTacToe/TicTacToe';
 import store from './redux/store';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom';
-
+import Login from './components/Login/login.js';
+import LoginSuccess from './components/Login/LoginSuccess';
 
 
 function App() {
@@ -38,6 +39,10 @@ function App() {
          <li>
            <Link to="/number-game">Number Game</Link>
          </li>
+
+         <li>
+           <Link to="/login">Login</Link>
+         </li>
        </ul>
          <Switch>
            <Route exact path="/">
@@ -48,13 +53,21 @@ function App() {
              <HospitalManagement/>
            </Route>
 
-            <Route exact path="/tictactoe">
+            <Route path="/tictactoe">
              <TicTacToe/>
            </Route>
 
-            <Route exact path="/number-game">
+            <Route path="/number-game">
              <GuessTheNumber/>
            </Route>
+
+            <Route path="/login">
+             <Login/>
+           </Route>
+
+            <Route path="/login-success">
+              <LoginSuccess />
+            </Route>
          </Switch>
      </div>
      {/*<TicTacToe></TicTacToe>*/}

@@ -1,8 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
-import ticTactoeSlice from './ticTactoeSlice'
+import ticTactoeSlice from './ticTactoeSlice';
+import LoginSlice from './loginSlice';
+
 
 export default configureStore({
 	reducer:{
-		ticTacToe : ticTactoeSlice
+		ticTacToe : ticTactoeSlice,
+		login : LoginSlice
 	}
 })
